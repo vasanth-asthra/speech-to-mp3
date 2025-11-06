@@ -1,26 +1,252 @@
-@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Work+Sans:wght@400;500&display=swap");
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* GLOBAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Work Sans", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html,
+body {
+  min-height: 100vh;
+  background: oklch(24.884% 0.0015 16.221);
+  color: #1f2937;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.page-container {
+  text-align: center;
+}
+
+/* MAIN CARD */
+.recorder-card {
+  background: white;
+  backdrop-filter: blur(25px);
+  border-radius: 20px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+  padding: 40px 50px;
+  width: 100%;
+  max-width: 720px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.subtext {
+  color: #4b5563;
+  margin-bottom: 30px;
+}
+
+/* RECORD BUTTON */
+.record-btn {
+  background: oklch(0.7912 0.0755 188.2400);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 36px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.record-btn:hover {
+  transform: scale(1.05);
+}
+
+/* RECORDING STATE */
+.recording-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.wave {
+  display: flex;
+  align-items: flex-end;
+  height: 70px;
+  gap: 5px;
+}
+
+.wave span {
+  width: 6px;
+  background: #2563eb;
+  border-radius: 3px;
+  animation: bounce 1s infinite ease-in-out;
+}
+
+.wave span:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.wave span:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.wave span:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.wave span:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+.wave.paused span {
+  animation-play-state: paused;
+  opacity: 0.5;
+}
+
+@keyframes bounce {
+  0% {
+    height: 20%;
+  }
+  50% {
+    height: 100%;
+  }
+  100% {
+    height: 20%;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.timer {
+  font-size: 20px;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+/* BUTTON GROUP */
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.pause-btn,
+.resume-btn,
+.stop-btn,
+.save-btn,
+.clear-btn {
+  border: none;
+  padding: 10px 26px;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+.pause-btn,
+.resume-btn,
+.stop-btn,
+.save-btn,
+.clear-btn {
+  background: oklch(0.7912 0.0755 188.2400);
+}
+
+.pause-btn:hover,
+.resume-btn:hover,
+.stop-btn:hover,
+.save-btn:hover,
+.clear-btn:hover {
+  transform: scale(1.05);
+}
+
+/* AUDIO CONTROLS */
+.audio-controls {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.audio-controls .controls-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.audio-hidden {
+  display: none;
+}
+
+/* Player control helpers moved from inline styles */
+.play-btn {
+  font-size: 20px;
+}
+
+.seek-range {
+  flex: 1;
+}
+
+audio {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+audio:focus {
+  outline: none;
+}
+
+/* ACTIONS BELOW AUDIO */
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.actions a {
+  text-decoration: none;
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.actions a:hover {
+  transform: scale(1.05);
+}
+
+/* SAVE SECTION */
+.save-section {
+  margin-top: 25px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+  .recorder-card {
+    padding: 28px;
+  }
+
+  .btn-group {
+    flex-direction: column;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .info-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info-section div {
+    width: 100%;
+    text-align: center;
+  }
 }
