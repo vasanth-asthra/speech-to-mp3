@@ -1,14 +1,9 @@
-"use client";
-
-import "./globals.css";
-import AudioRecorder from "./components/AudioRecorder";
+import AudioRecorder from "./components/Audiorecorder/AudioRecorder";
 
 export default function Page() {
   return (
-    <main className="page-container">
+    <main className="flex justify-center items-center min-h-screen">
       <AudioRecorder />
-      
-      
     </main>
   );
 }

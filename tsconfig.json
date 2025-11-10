@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "public/audio-rcordings"  ],
+, "public/audio-recordings"  ],
   "exclude": ["node_modules"]
 }
